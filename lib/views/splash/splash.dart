@@ -1,5 +1,8 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:patient_manager/main.dart';
+import 'package:patient_manager/views/auth/login.dart';
 import 'package:patient_manager/views/home/home.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -13,7 +16,8 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    goToHome();
+    // goToHome();
+    goToLogin();
     super.initState();
   }
 
@@ -23,7 +27,7 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       body: Stack(
         children: [
-          Container(
+          SizedBox(
             width: size.width,
             height: size.height,
             child: Image.asset(
@@ -32,9 +36,16 @@ class _SplashScreenState extends State<SplashScreen> {
               fit: BoxFit.cover,
             ),
           ),
-          // Align(
-          //   child: Image.asset(name),
-          // )
+          Align(
+            alignment: Alignment.center,
+            child: BackdropFilter(
+              filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+              child: Container(
+                color: Colors.black.withOpacity(0),
+                
+              ),
+            ),
+          )
         ],
       ),
     );
@@ -42,11 +53,11 @@ class _SplashScreenState extends State<SplashScreen> {
 
   Future goToHome() async {
     await Future.delayed(
-      const Duration(seconds: 3),
+      const Duration(seconds: 5),
       () {
         Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(
-              builder: (context) => HomeScreen(),
+              builder: (context) => const HomeScreen(),
             ),
             (route) => false);
       },
@@ -58,7 +69,7 @@ class _SplashScreenState extends State<SplashScreen> {
       () {
         Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(
-              builder: (context) => HomeScreen(),
+              builder: (context) => LoginScreen(),
             ),
             (route) => false);
       },
