@@ -32,7 +32,6 @@ class _SplashScreenState extends State<SplashScreen> {
             height: size.height,
             child: Image.asset(
               'assets/images/splash.jpeg',
-              
               fit: BoxFit.cover,
             ),
           ),
@@ -41,11 +40,10 @@ class _SplashScreenState extends State<SplashScreen> {
             child: BackdropFilter(
               filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
               child: Container(
-                
                 decoration: BoxDecoration(
-                  color: Colors.black.withOpacity(0),
-                  image: DecorationImage(image: AssetImage('assets/images/logo.png')) 
-                ),
+                    color: Colors.black.withOpacity(0),
+                    image: const DecorationImage(
+                        image: AssetImage('assets/images/logo.png'))),
               ),
             ),
           )
@@ -60,13 +58,14 @@ class _SplashScreenState extends State<SplashScreen> {
       () {
         Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(
-              builder: (context) => const HomeScreen(),
+              builder: (context) => HomeScreen(),
             ),
             (route) => false);
       },
     );
   }
-   Future goToLogin() async {
+
+  Future goToLogin() async {
     await Future.delayed(
       const Duration(seconds: 3),
       () {
@@ -79,13 +78,12 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
 
-  Future checkUSerLoggedIn() async{
+  Future checkUSerLoggedIn() async {
     final userSharedPref = await SharedPreferences.getInstance();
     final userLoggedIn = userSharedPref.getBool(userLogged);
 
-    if(userLoggedIn == null || userLoggedIn == false){
-      
-    } else{
+    if (userLoggedIn == null || userLoggedIn == false) {
+    } else {
       goToHome();
     }
   }
