@@ -1,6 +1,9 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:patient_manager/views/auth/widgets/base_text_widget.dart';
 import 'package:patient_manager/views/auth/widgets/login_textfeild_widget.dart';
+import 'package:patient_manager/views/home/home.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
@@ -16,7 +19,29 @@ class LoginScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Image.asset('assets/images/splash.jpeg'),
+            Stack(
+              children: [
+                SizedBox(
+                  width: size.width,
+                  // height: size.height,
+                  child: Image.asset(
+                    'assets/images/splash.jpeg',
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.center,
+                  child: BackdropFilter(
+                    filter: ImageFilter.blur(sigmaX: 3, sigmaY: 3),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: Colors.black.withOpacity(0),
+                          image: DecorationImage(
+                              image: AssetImage('assets/images/logo.png'))),
+                    ),
+                  ),
+                )
+              ],
+            ),
             Padding(
               padding: EdgeInsets.all(size.width / 16),
               child: const SizedBox(
@@ -34,11 +59,13 @@ class LoginScreen extends StatelessWidget {
                 title: 'Email',
                 hintText: 'Enter you email',
                 obscureText: false,
+                keyBoardType: TextInputType.emailAddress,
                 controller: emailController),
             const SizedBox(
               height: 20,
             ),
             LoginTextFeildWidget(
+                keyBoardType: TextInputType.visiblePassword,
                 size: size,
                 title: 'Password',
                 hintText: 'Enter password',
@@ -55,7 +82,13 @@ class LoginScreen extends StatelessWidget {
                 decoration:
                     BoxDecoration(borderRadius: BorderRadius.circular(50)),
                 child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).pushAndRemoveUntil(
+                          MaterialPageRoute(
+                            builder: (context) => HomeScreen(),
+                          ),
+                          (route) => false);
+                    },
                     child: const Text(
                       'Login',
                       style: TextStyle(fontSize: 17),
@@ -69,4 +102,3 @@ class LoginScreen extends StatelessWidget {
     );
   }
 }
-

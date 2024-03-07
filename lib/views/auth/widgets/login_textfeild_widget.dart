@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class LoginTextFeildWidget extends StatelessWidget {
   const LoginTextFeildWidget({
     super.key,
-    required this.size, required this.title, required this.hintText, required this.obscureText, required this.controller,
+    required this.size, required this.title, required this.hintText, required this.obscureText, required this.controller, required this.keyBoardType,
   });
 
   final Size size;
@@ -12,6 +12,7 @@ class LoginTextFeildWidget extends StatelessWidget {
   final String hintText;
   final bool obscureText;
   final TextEditingController controller;
+  final TextInputType keyBoardType;
   
 
   @override
@@ -29,6 +30,7 @@ class LoginTextFeildWidget extends StatelessWidget {
             height: 10,
           ),
           TextField(
+            keyboardType: keyBoardType,
             obscureText: obscureText,
             controller: controller,
             decoration: InputDecoration(

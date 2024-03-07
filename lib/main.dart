@@ -26,6 +26,10 @@ class MyApp extends StatelessWidget {
               ),
             ),
           ),
+          appBarTheme: AppBarTheme(
+              color: Colors.white,
+              elevation: 0,
+              titleTextStyle: TextStyle(color: Colors.black)),
           fontFamily: 'Poppins',
           scaffoldBackgroundColor: Colors.white),
       debugShowCheckedModeBanner: false,

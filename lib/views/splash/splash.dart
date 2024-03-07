@@ -41,8 +41,11 @@ class _SplashScreenState extends State<SplashScreen> {
             child: BackdropFilter(
               filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
               child: Container(
-                color: Colors.black.withOpacity(0),
                 
+                decoration: BoxDecoration(
+                  color: Colors.black.withOpacity(0),
+                  image: DecorationImage(image: AssetImage('assets/images/logo.png')) 
+                ),
               ),
             ),
           )
