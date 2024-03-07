@@ -121,7 +121,7 @@ class HomeScreen extends StatelessWidget {
               child: ElevatedButton(
                   onPressed: () {
                     Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => RegisterPateinetScreen(),
+                      builder: (context) => const RegisterPateinetScreen(),
                     ));
                   },
                   child: const Text('Register Now')),

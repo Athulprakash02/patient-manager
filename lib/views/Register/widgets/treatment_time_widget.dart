@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:patient_manager/controllers/core/constants.dart';
 
+// ignore: must_be_immutable
 class TreatMentTimeWidget extends StatelessWidget {
    TreatMentTimeWidget({
     super.key,

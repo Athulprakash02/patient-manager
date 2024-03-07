@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:patient_manager/controllers/core/constants.dart';
 import 'package:patient_manager/views/Register/widgets/branch_drop_down_widget.dart';
 import 'package:patient_manager/views/Register/widgets/details_textfeild_widget.dart';
 import 'package:patient_manager/views/Register/widgets/location_drop_down_widget.dart';
@@ -10,7 +9,7 @@ import 'package:patient_manager/views/Register/widgets/treatment_time_widget.dar
 
 // ignore: must_be_immutable
 class RegisterPateinetScreen extends StatefulWidget {
-  RegisterPateinetScreen({super.key});
+  const RegisterPateinetScreen({super.key});
 
   @override
   State<RegisterPateinetScreen> createState() => _RegisterPateinetScreenState();
@@ -58,12 +57,13 @@ class _RegisterPateinetScreenState extends State<RegisterPateinetScreen> {
       firstDate: DateTime(2015, 8),
       lastDate: DateTime(2101),
     );
-    if (picked != null && picked != selectedDate)
+    if (picked != null && picked != selectedDate) {
       setState(() {
         selectedDate = picked;
         String formattedDate = DateFormat('dd/MM/yyyy').format(selectedDate);
         treatmentDateController.text = formattedDate;
       });
+    }
   }
 
   @override
@@ -163,10 +163,10 @@ class _RegisterPateinetScreenState extends State<RegisterPateinetScreen> {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {},
-                  child: Text('+ Add Treatments'),
+                  child: const  Text('+ Add Treatments'),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
               DetailsTextFeildWidget(
@@ -181,7 +181,7 @@ class _RegisterPateinetScreenState extends State<RegisterPateinetScreen> {
                   hintText: '',
                   controller: discountAmountTextController,
                   keyBoardType: TextInputType.number),
-              Text(
+              const Text(
                 'Payment Option',
                 style: TextStyle(fontSize: 16),
               ),
@@ -198,18 +198,18 @@ class _RegisterPateinetScreenState extends State<RegisterPateinetScreen> {
                   hintText: '',
                   controller: balanceAmountTextController,
                   keyBoardType: TextInputType.number),
-              Text(
+              const Text(
                 'Treatment Date',
                 style: TextStyle(fontSize: 16),
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               TextField(
                 controller: treatmentDateController,
                 readOnly: true,
                 decoration: InputDecoration(
                     suffixIcon: GestureDetector(
                         onTap: () => _selectDate(context),
-                        child: Icon(
+                        child: const Icon(
                           Icons.calendar_today_outlined,
                           color: Color(0xff006837),
                         )),
@@ -222,10 +222,10 @@ class _RegisterPateinetScreenState extends State<RegisterPateinetScreen> {
                         ),
                         borderRadius: BorderRadius.circular(10))),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
-              Text(
+              const Text(
                 'Treatment Time',
                 style: TextStyle(fontSize: 16),
               ),
@@ -234,12 +234,12 @@ class _RegisterPateinetScreenState extends State<RegisterPateinetScreen> {
                   treatmentHour: treatmentHour,
                   treatmentMinute: treatmentMinute),
 
-                  SizedBox(height: 20,)
+                  const SizedBox(height: 20,)
 ,
                   SizedBox(width: double.infinity,
                   child: ElevatedButton(onPressed: () {
                     
-                  }, child: Text('Save')),)
+                  }, child: const Text('Save')),)
             ],
           ),
         ),
