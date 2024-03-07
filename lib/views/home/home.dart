@@ -106,6 +106,7 @@ class HomeScreen extends StatelessWidget {
               child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: size.width / 16),
                   child: ListView.builder(
+                    physics: const BouncingScrollPhysics(),
                     itemCount: 5,
                     itemBuilder: (context, index) =>
                         PatientDetailWidget(size: size),
