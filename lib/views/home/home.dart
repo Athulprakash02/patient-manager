@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:patient_manager/views/Register/register.dart';
 import 'package:patient_manager/views/home/widgets/patient_details_widget.dart';
 
 // ignore: must_be_immutable
@@ -45,7 +46,8 @@ class HomeScreen extends StatelessWidget {
                                   color: Colors.grey,
                                 )),
                           )),
-                      ElevatedButton(onPressed: () {}, child: const Text('Search'))
+                      ElevatedButton(
+                          onPressed: () {}, child: const Text('Search'))
                     ],
                   ),
                   const SizedBox(
@@ -115,8 +117,13 @@ class HomeScreen extends StatelessWidget {
                 bottom: size.width / 16),
             child: SizedBox(
               width: size.width,
-              child:
-                  ElevatedButton(onPressed: () {}, child: const Text('Register Now')),
+              child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => RegisterPateinetScreen(),
+                    ));
+                  },
+                  child: const Text('Register Now')),
             ),
           )
         ],

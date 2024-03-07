@@ -35,7 +35,7 @@ class LoginTextFeildWidget extends StatelessWidget {
             controller: controller,
             decoration: InputDecoration(
               hintText: hintText,
-                fillColor: const Color.fromARGB(255, 239, 237, 237),
+                fillColor: const Color.fromARGB(79, 217, 217, 217),
                 filled: true,
                 border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10))),
