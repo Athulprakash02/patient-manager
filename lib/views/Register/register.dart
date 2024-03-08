@@ -4,6 +4,7 @@ import 'package:patient_manager/views/Register/widgets/branch_drop_down_widget.d
 import 'package:patient_manager/views/Register/widgets/details_textfeild_widget.dart';
 import 'package:patient_manager/views/Register/widgets/location_drop_down_widget.dart';
 import 'package:patient_manager/views/Register/widgets/payment_option_widgte.dart';
+import 'package:patient_manager/views/Register/widgets/treatment_dropdown_widget.dart';
 import 'package:patient_manager/views/Register/widgets/treatment_details_widget.dart';
 import 'package:patient_manager/views/Register/widgets/treatment_time_widget.dart';
 
@@ -37,6 +38,9 @@ class _RegisterPateinetScreenState extends State<RegisterPateinetScreen> {
   final TextEditingController treatmentDateController = TextEditingController();
 
   String? location;
+  String? treatmentSelectedName;
+  int maleCount = 0;
+  int femaleCount = 0;
 
   String? branch;
   String? paymentOption;
@@ -72,7 +76,12 @@ class _RegisterPateinetScreenState extends State<RegisterPateinetScreen> {
     return Scaffold(
       appBar: AppBar(
         elevation: 1,
-        actions: const [Icon(Icons.notifications_none_outlined,size: 30,)],
+        actions: const [
+          Icon(
+            Icons.notifications_none_outlined,
+            size: 30,
+          )
+        ],
         bottom: PreferredSize(
             preferredSize: Size(size.width, 40),
             child: Padding(
@@ -163,22 +172,66 @@ class _RegisterPateinetScreenState extends State<RegisterPateinetScreen> {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
- showDialog(
-              context: context,
-              builder: (BuildContext context) {
-                return AlertDialog(
-                  title: Text('Dialog Title'),
-                  content: Text('This is the content of the dialog.'),
-                  actions: <Widget>[
-                    
-                    
-                  ],
-                );
-              },
-            );
-                    
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return Dialog(
+                          child: Container(
+                            width: size.width * .7,
+                            height: size.width*.85,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(50)),
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: size.width / 16,
+                                  vertical: size.width / 16),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const Text(
+                                    'Choose Treatment',
+                                    style: TextStyle(fontSize: 16),
+                                  ),
+                                  TreatmentDropDownWidget(
+                                      treatmentSelectedName:
+                                          treatmentSelectedName),
+                                  const SizedBox(
+                                    height: 15,
+                                  ),
+                                  const Text(
+                                    'Add Patients',
+                                    style: TextStyle(fontSize: 16),
+                                  ),
+                                  AddPatientsWidget(
+                                    size: size,
+                                    maleCount: maleCount,
+                                    gender: 'Male',
+                                  ),
+                                  const SizedBox(
+                                    height: 15,
+                                  ),
+                                  AddPatientsWidget(
+                                    size: size,
+                                    maleCount: femaleCount,
+                                    gender: 'Female',
+                                  ),
+                                  const SizedBox(
+                                    height: 15,
+                                  ),
+                                  SizedBox(
+                                    width: double.maxFinite,
+                                    child: ElevatedButton(
+                                        onPressed: () {}, child: const Text('Save')),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                    );
                   },
-                  child: const  Text('+ Add Treatments'),
+                  child: const Text('+ Add Treatments'),
                 ),
               ),
               const SizedBox(
@@ -248,17 +301,98 @@ class _RegisterPateinetScreenState extends State<RegisterPateinetScreen> {
                   size: size,
                   treatmentHour: treatmentHour,
                   treatmentMinute: treatmentMinute),
-
-                  const SizedBox(height: 20,)
-,
-                  SizedBox(width: double.infinity,
-                  child: ElevatedButton(onPressed: () {
-                    
-                  }, child: const Text('Save')),)
+              const SizedBox(
+                height: 20,
+              ),
+              SizedBox(
+                width: double.infinity,
+                child:
+                    ElevatedButton(onPressed: () {}, child: const Text('Save')),
+              )
             ],
           ),
         ),
       )),
+    );
+  }
+}
+
+// ignore: must_be_immutable
+class AddPatientsWidget extends StatelessWidget {
+  AddPatientsWidget({
+    super.key,
+    required this.size,
+    required this.maleCount,
+    required this.gender,
+  });
+
+  final Size size;
+  int maleCount;
+  final String gender;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Container(
+          width: size.width * .25,
+          height: 30,
+          decoration: BoxDecoration(
+            border: Border.all(),
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Center(
+              child: Text(
+            gender,
+            textAlign: TextAlign.left,
+          )),
+        ),
+        Row(
+          children: [
+            CircleAvatar(
+              radius: 13,
+              backgroundColor: const Color(0xff006837),
+              child: GestureDetector(
+                  onTap: () {},
+                  child: const Icon(
+                    Icons.remove,
+                    color: Colors.white,
+                  )),
+            ),
+            const SizedBox(
+              width: 5,
+            ),
+            Container(
+              width: 40,
+              height: 30,
+              decoration: BoxDecoration(
+                border: Border.all(),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Center(
+                  child: Text(
+                maleCount.toString(),
+                style: const TextStyle(fontSize: 16),
+              )),
+            ),
+            const SizedBox(
+              width: 5,
+            ),
+            GestureDetector(
+              onTap: () {},
+              child: const CircleAvatar(
+                radius: 13,
+                backgroundColor: Color(0xff006837),
+                child: Icon(
+                  Icons.add,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ],
+        )
+      ],
     );
   }
 }

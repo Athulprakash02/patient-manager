@@ -12,8 +12,9 @@ class AuthService {
       Map<String, String> headers = {'Content-Type': 'application/json'};
       final apiUrl = Uri.parse(baseUrl + endPoint);
       var response=
-          await http.post(apiUrl, headers: headers, body: jsonEncode(values));
+          await http.post(apiUrl, headers: headers, body: json.encode(values));
       if (response.statusCode == 200) {
+        // ignore: unused_local_variable
         var data = response.body;
         return true;
       } else {

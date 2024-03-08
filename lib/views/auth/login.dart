@@ -119,7 +119,7 @@ class LoginScreen extends StatelessWidget {
                         ),
                         (route) => false);
                   },
-                  child: Text('Skip login')),
+                  child: const Text('Skip login')),
               LoginScreenBaseTextWidget(size: size)
             ],
           ),

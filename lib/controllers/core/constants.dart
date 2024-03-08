@@ -7,6 +7,14 @@ const List<String> locations = [
 ];
 List<String> branches = ['palakkad', 'calicut'];
 
+
+const List<String> treatments = [
+  'treatment1',
+  'treatment2',
+  'treatment3',
+  'treatment4',
+  'treatment5'
+];
 List<String> treatmentTimeHours = [
   '09',
   '10',
