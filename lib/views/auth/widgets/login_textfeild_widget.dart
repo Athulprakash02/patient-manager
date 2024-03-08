@@ -29,7 +29,7 @@ class LoginTextFeildWidget extends StatelessWidget {
           const SizedBox(
             height: 10,
           ),
-          TextField(
+          TextFormField(
             keyboardType: keyBoardType,
             obscureText: obscureText,
             controller: controller,
@@ -39,6 +39,12 @@ class LoginTextFeildWidget extends StatelessWidget {
                 filled: true,
                 border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10))),
+                    // ignore: body_might_complete_normally_nullable
+                    validator: (value) {
+                      if(controller.text.isEmpty){
+                        return 'Please Enter valid Details';
+                      }
+                    },
           )
         ],
       ),

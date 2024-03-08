@@ -72,7 +72,7 @@ class _RegisterPateinetScreenState extends State<RegisterPateinetScreen> {
     return Scaffold(
       appBar: AppBar(
         elevation: 1,
-        actions: const [Icon(Icons.notifications_none_outlined)],
+        actions: const [Icon(Icons.notifications_none_outlined,size: 30,)],
         bottom: PreferredSize(
             preferredSize: Size(size.width, 40),
             child: Padding(
@@ -162,7 +162,22 @@ class _RegisterPateinetScreenState extends State<RegisterPateinetScreen> {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+ showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  title: Text('Dialog Title'),
+                  content: Text('This is the content of the dialog.'),
+                  actions: <Widget>[
+                    
+                    
+                  ],
+                );
+              },
+            );
+                    
+                  },
                   child: const  Text('+ Add Treatments'),
                 ),
               ),
